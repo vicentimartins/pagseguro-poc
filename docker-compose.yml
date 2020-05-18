@@ -1,0 +1,39 @@
+###############################################################################
+#                          Generated on phpdocker.io                          #
+###############################################################################
+version: "3.1"
+services:
+
+    postgres:
+      image: postgres:11.1-alpine
+      container_name: vmpagseguro-postgres
+      working_dir: /application
+      volumes:
+        - ./phpdocker/database:/application
+      environment:
+        - POSTGRES_USER=postgres
+        - POSTGRES_PASSWORD=secret
+        - POSTGRES_DB=database
+      ports:
+        - "5432:5432"
+
+    webserver:
+      image: nginx:alpine
+      container_name: vmpagseguro-webserver
+      working_dir: /application
+      volumes:
+          - ./App:/application
+          - ./phpdocker/nginx/nginx.conf:/etc/nginx/conf.d/default.conf
+      ports:
+       - "80:80"
+
+    php-fpm:
+      build: phpdocker/php-fpm
+      container_name: vmpagseguro-php-fpm
+      working_dir: /application
+      ports:
+        - 9000:9000
+      volumes:
+        - ./App:/application
+        - ./phpdocker/php-fpm/php-ini-overrides.ini:/etc/php/7.4/fpm/conf.d/99-overrides.ini
+
