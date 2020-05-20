@@ -11,6 +11,13 @@
         }
     },
     "require": {
-        "pagseguro/pagseguro-php-sdk" : "^6.0"
+        "pagseguro/pagseguro-php-sdk" : "^6.0",
+        "slim/slim": "4.*",
+        "slim/psr7": "dev-master",
+        "nyholm/psr7": "^1.0@dev",
+        "nyholm/psr7-server": "dev-master",
+        "guzzlehttp/psr7": "1.x-dev",
+        "http-interop/http-factory-guzzle": "dev-master",
+        "laminas/laminas-diactoros": "^2.3@dev"
     }
 }
