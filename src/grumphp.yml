@@ -1,0 +1,33 @@
+grumphp:
+    hooks_dir: ../.git/hooks
+    git_hook_variables:
+        EXEC_GRUMPHP_COMMAND: exec
+    stop_on_failure: true
+    ignore_unstaged_changes: true
+    hide_circumvention_tip: false
+    process_timeout: 60
+    additonal_info: ~
+    ascii:
+        failed: resource/grumphp-grumpy.txt
+        succeeded: resource/grumphp-happy.txt
+    parallel:
+        enabled: true
+        max_workers: 32
+    fixer:
+        enabled: true
+        fix_by_default: true
+    tasks:
+        phpunit:
+            config_file: ~
+            testsuite: ~
+            group: []
+            always_execute: true
+        psalm:
+            config: psalm.xml
+            ignore_patterns: []
+            no_cache: false
+            report: ~ 
+            output_format: null
+            threads: 1
+            triggered_by: ['php']
+            show_info: false
